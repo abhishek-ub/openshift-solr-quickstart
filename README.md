@@ -20,9 +20,13 @@ To install the quick start use the following commands
     # Edit tomcat-users.xml and web.xml (see below)
     # Edit schema.xml and solrconfig.xml in the solr.home/collection1/conf/ folder
     # Any additional customization and then commit changes
+    # Add solr.jar found in the binary distribution of Apache Solr (example/webapps) to the webapp directory.
+    
     git commit -am "Added Solr Quickstart"
     git push
-
+    
+    # Specify the solr home (see below)
+    # copy jars from example/lib/ext of solr distribution into solr.home/lib of your application (see below)
 ### Tomcat Security
 Edit .openshift/conf/tomcat-users.xml. Replace everything within the ``` <tomcat-user>``` element with (using your own username and password) and save:
 
@@ -51,6 +55,20 @@ Add the following lines within the ```<web-app>``` element and save the war file
     <realm-name>Solr</realm-name>
   </login-config> 
 ```
+### Specify solr home 
+# ssh into your application server
+rhc ssh <app_name>
+
+# Add solr home
+ctl_all stop
+export JAVA_OPTS="$JAVA_OPTS -Dsolr.solr.home=$OPENSHIFT_DATA_DIR/solr.home"
+
+
+### Place logger jars
+# use SFTP of clients like filezilla to copy jar found at /example/lib/ext 
+# into lib at solr home on application server (/app-root/data/solr.home/lib)
+ctl_all start
+
 ### What Was Done
 
 Using the quick start an Apache Solr instance is created using the example collection found within the binary distribution of Apache Solr.
