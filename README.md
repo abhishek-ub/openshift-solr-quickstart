@@ -56,18 +56,18 @@ Add the following lines within the ```<web-app>``` element and save the war file
   </login-config> 
 ```
 ### Specify solr home 
-# ssh into your application server
-rhc ssh <app_name>
+    # ssh into your application server
+    rhc ssh <app_name>
 
-# Add solr home
-ctl_all stop
-export JAVA_OPTS="$JAVA_OPTS -Dsolr.solr.home=$OPENSHIFT_DATA_DIR/solr.home"
+   # Add solr home
+    ctl_all stop
+    export JAVA_OPTS="$JAVA_OPTS -Dsolr.solr.home=$OPENSHIFT_DATA_DIR/solr.home"
 
 
 ### Place logger jars
-# use SFTP of clients like filezilla to copy jar found at /example/lib/ext 
-# into lib at solr home on application server (/app-root/data/solr.home/lib)
-ctl_all start
+    # use SFTP of clients like filezilla to copy jar found at /example/lib/ext 
+    # into lib at solr home on application server (/app-root/data/solr.home/lib)
+    ctl_all start
 
 ### What Was Done
 
