@@ -59,7 +59,7 @@ Add the following lines within the ```<web-app>``` element and save the war file
     # ssh into your application server
     rhc ssh <app_name>
 
-   # Add solr home
+    # Add solr home
     ctl_all stop
     export JAVA_OPTS="$JAVA_OPTS -Dsolr.solr.home=$OPENSHIFT_DATA_DIR/solr.home"
 
